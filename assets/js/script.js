@@ -1,6 +1,6 @@
 // check off specific todos by clicking
-$("li").click(function() {
-    $(this).toggleClass("completed");
+$("ul").on("click", "li", function() {
+        $(this).toggleClass("completed");
 });
 
 // Delete a to-do
@@ -9,4 +9,13 @@ $("span").click(function(event) {
         $(this).remove();
     });
     event.stopPropagation();
+});
+
+// Create a to-do upon pressing enter
+$("input[type='text']").keypress(function() {
+    if(event.which === 13) {
+        var todoText = $(this).val();
+        $(this).val("");
+        $("ul").append("<li><span>X</span> " + todoText + "</li>");
+    }
 });
